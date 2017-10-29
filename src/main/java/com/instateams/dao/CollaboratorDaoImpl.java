@@ -1,7 +1,6 @@
 package com.instateams.dao;
 
 import com.instateams.model.Collaborator;
-import com.instateams.model.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
