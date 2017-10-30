@@ -113,9 +113,10 @@ nav ul li.selected a {
 	left: 8px;
 }
 .button.button-delete {
+    top:50%;
+    margin-top:-9px;
     padding: 5px;
     float: right;
-    position: relative;
 }
 .button.button-add {
     padding: 5px;
@@ -263,7 +264,17 @@ strong {
 	color: #747372;
 }
 
+.collaborator-list {
 
+}
+
+.collaborator {
+    width: 70%;
+}
+
+.element {
+    margin-bottom: 30px;
+}
 
 /* ==========================================================================
    Custom Select Styles
