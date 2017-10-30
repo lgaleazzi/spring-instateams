@@ -16,7 +16,6 @@ public class Collaborator
 
     @ManyToOne
     @NotNull
-    @Column
     private Role role;
 
     public Collaborator() {}
