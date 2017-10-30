@@ -1,6 +1,7 @@
 package com.instateams.service;
 
 import com.instateams.dao.RoleDao;
+import com.instateams.exceptions.ObjectNotFoundException;
 import com.instateams.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,11 @@ public class RoleServiceImpl implements RoleService
     @Override
     public Role findById(Long id)
     {
+        Role role = roleDao.findById(id);
+        if (role == null)
+        {
+            throw new ObjectNotFoundException();
+        }
         return roleDao.findById(id);
     }
 
