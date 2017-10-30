@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -20,7 +22,20 @@ public class RoleController
     {
         List<Role> roles = roleService.findAll();
         model.addAttribute("roles", roles);
+        if (!model.containsAttribute("newRole"))
+        {
+            model.addAttribute("newRole", new Role());
+        }
 
         return "role/index";
+    }
+
+    @RequestMapping(value = "roles", method = RequestMethod.POST)
+    public String addRole(@Valid Role role)
+    {
+        //TODO: deal with invalid data
+        roleService.save(role);
+
+        return "redirect:/roles";
     }
 }
