@@ -112,6 +112,15 @@ nav ul li.selected a {
 	top: 8px;
 	left: 8px;
 }
+.button.button-delete {
+    padding: 5px;
+    float: right;
+    position: relative;
+}
+.button.button-add {
+    padding: 5px;
+}
+
 .button:focus {
 	outline: 0;
 }
@@ -245,6 +254,11 @@ strong {
 .roles-collaborators h3 {
 	margin: 0 0 18px 35px;
 }
+
+.role-list {
+    padding: 35px 35px 0 35px;
+}
+
 .primary {
 	font-weight: 700;
 }
@@ -324,6 +338,12 @@ strong {
 form {
 	padding: 35px 35px 0 35px;
 }
+
+
+form.role {
+    padding: 10px;
+}
+
 form label {
 	display: block;
 	margin-bottom: 13px;
@@ -401,13 +421,15 @@ form .add-new-collaborator .custom-select {
 }
 form .add-new-role .button,
 form .add-new-collaborator .button {
-	width: 30px;
+    height: 30 px;
 	text-align: center;
 	float: left;
 	margin: 0;
 }
 
-
+.material-icons.md-18 {
+    font-size: 18px;
+}
 
 
 
