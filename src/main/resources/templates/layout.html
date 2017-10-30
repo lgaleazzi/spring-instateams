@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>InstaTeam</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" th:href="@{/static/css/normalize.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/site.css}"/>
+</head>
+
+<body>
+<header th:fragment="header">
+    <div class="container">
+        <div class="site-header">
+            <a class="logo" th:href="@{/}">InstaTeam</a>
+        </div>
+    </div>
+</header>
+
+<nav th:fragment="nav">
+    <ul>
+        <li><a th:href="@{/}">Projects</a></li>
+        <li><a th:href="@{/}">Collaborators</a></li>
+        <li><a th:href="@{/roles}">Roles</a></li>
+    </ul>
+</nav>
+
+</body>
+
+</html>
