@@ -255,10 +255,6 @@ strong {
 	margin: 0 0 18px 35px;
 }
 
-.role-list {
-    padding: 35px 35px 0 35px;
-}
-
 .primary {
 	font-weight: 700;
 }
@@ -426,6 +422,14 @@ form .add-new-collaborator .button {
 	float: left;
 	margin: 0;
 }
+
+form a {
+    color: #888;
+}
+
+/* ==========================================================================
+   Icon Styles
+   ========================================================================== */
 
 .material-icons.md-18 {
     font-size: 18px;
