@@ -11,15 +11,16 @@
         <form th:action="@{/collaborators}" method="post">
             <h2>Manage Collaborators</h2>
             <ul class="checkbox-list">
-                <li th:each="coll : ${collaborators}">
-                    <span class="primary" th:text="${coll.name}"></span>
-                    <div class="custom-select">
-                        <span class="dropdown-arrow"></span>
-                        <select>
-                            <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"
-                                    th:selected="${role.id} == ${coll.role.id}"></option>
-                        </select>
+                <li class="collaborator-list" th:each="coll : ${collaborators}">
+                    <div class="collaborator">
+                        <a th:href="@{|/collaborators/${coll.id}|}">
+                            <span class="primary" th:text="${coll.name}"></span>
+                            <span class="secondary" th:text="${coll.role.name}"></span>
+                        </a>
                     </div>
+                    <a class="button button-delete" href="#">
+                        <i class="material-icons md-18">delete</i>
+                    </a>
                 </li>
             </ul>
             <div class="actions add-new-collaborator" th:object="${collaboratorToSave}">

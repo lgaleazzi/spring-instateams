@@ -7,6 +7,7 @@ import com.instateams.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -42,6 +43,25 @@ public class CollaboratorController
     {
         System.out.println(collaborator);
         collaboratorService.save(collaborator);
+        return "redirect:/collaborators";
+    }
+
+    @RequestMapping("/collaborators/{id}")
+    public String displayEditForm(@PathVariable Long id, Model model)
+    {
+        Collaborator collaborator = collaboratorService.findById(id);
+        List<Role> roles = roleService.findAll();
+        model.addAttribute("collaboratorToSave", collaborator);
+        model.addAttribute("roles", roles);
+
+        return "collaborator/index";
+    }
+
+    @RequestMapping(value = "/collaborators/{id}", method = RequestMethod.POST)
+    public String editCollaborator(@Valid Collaborator collaborator)
+    {
+        collaboratorService.save(collaborator);
+
         return "redirect:/collaborators";
     }
 }
