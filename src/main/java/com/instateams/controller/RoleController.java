@@ -41,7 +41,6 @@ public class RoleController
         return "redirect:/roles";
     }
 
-    //TODO: probably remove that
     @RequestMapping("/roles/{id}")
     public String displayEditForm(@PathVariable Long id, Model model)
     {
