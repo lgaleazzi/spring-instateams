@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+
+<body>
+<header th:replace="layout :: header"></header>
+<nav th:replace="layout :: nav"></nav>
+
+<section>
+    <div class="container wrapper">
+        <form th:action="@{/collaborators}" method="post">
+            <h2>Manage Collaborators</h2>
+            <ul class="checkbox-list">
+                <li th:each="coll : ${collaborators}">
+                    <span class="primary" th:text="${coll.name}"></span>
+                    <div class="custom-select">
+                        <span class="dropdown-arrow"></span>
+                        <select>
+                            <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"
+                                    th:selected="${role.id} == ${coll.role.id}"></option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+            <div class="actions add-new-collaborator" th:object="${collaboratorToSave}">
+                <input th:field="*{id}" type="hidden"/>
+                <input th:field="*{name}" type="text" placeholder="Name..."/>
+                <div class="custom-select">
+                    <span class="dropdown-arrow"></span>
+                    <select th:field="*{role.id}">
+                        <option value="" disabled="disabled">Select a role</option>
+                        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+                    </select>
+                </div>
+                <button class="button button-add" type="submit"><i class="material-icons">save</i></button>
+            </div>
+        </form>
+    </div>
+</section>
+
+</body>
+
+</html>
