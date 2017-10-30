@@ -40,6 +40,23 @@ public class RoleController
         return "redirect:/roles";
     }
 
+    @RequestMapping("/roles/{id}/edit")
+    public String displayEditForm(@PathVariable Long id, Model model)
+    {
+        Role role = roleService.findById(id);
+        model.addAttribute("role", role);
+
+        return "role/edit";
+    }
+
+    @RequestMapping(value = "/roles/{id}/edit", method = RequestMethod.POST)
+    public String editRole(@Valid Role role)
+    {
+        roleService.save(role);
+
+        return "redirect:/roles";
+    }
+
     @RequestMapping(value = "/roles/{id}/delete", method = RequestMethod.POST)
     public String deleteRole(@PathVariable Long id)
     {
