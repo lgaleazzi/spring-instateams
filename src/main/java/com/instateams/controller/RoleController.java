@@ -23,9 +23,10 @@ public class RoleController
     {
         List<Role> roles = roleService.findAll();
         model.addAttribute("roles", roles);
-        if (!model.containsAttribute("newRole"))
+        if (!model.containsAttribute("roleToSave"))
         {
-            model.addAttribute("newRole", new Role());
+            model.addAttribute("roleToSave", new Role());
+            model.addAttribute("action", "/roles");
         }
 
         return "role/index";
@@ -40,16 +41,17 @@ public class RoleController
         return "redirect:/roles";
     }
 
-    @RequestMapping("/roles/{id}/edit")
+    //TODO: probably remove that
+    @RequestMapping("/roles/{id}")
     public String displayEditForm(@PathVariable Long id, Model model)
     {
         Role role = roleService.findById(id);
-        model.addAttribute("role", role);
-
-        return "role/edit";
+        model.addAttribute("roleToSave", role);
+        model.addAttribute("action", String.format("/roles/%s", id));
+        return "role/index";
     }
 
-    @RequestMapping(value = "/roles/{id}/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/roles/{id}", method = RequestMethod.POST)
     public String editRole(@Valid Role role)
     {
         roleService.save(role);
@@ -57,7 +59,7 @@ public class RoleController
         return "redirect:/roles";
     }
 
-    @RequestMapping(value = "/roles/{id}/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/roles/{id}/delete")
     public String deleteRole(@PathVariable Long id)
     {
         Role role = roleService.findById(id);

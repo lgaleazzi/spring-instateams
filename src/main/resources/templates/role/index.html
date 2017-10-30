@@ -8,23 +8,22 @@
 
 <section>
     <div class="container wrapper">
-        <div class="role-list">
+        <form th:action="@{${action}}" method="post">
             <h2>Manage Roles</h2>
             <div>
-                <ul class="checkbox-list" th:each="role : ${roles}">
-                    <li>
-                        <form class="role" th:action="@{|/roles/${role.id}/delete|}" method="post">
-                            <span class="primary" th:text="${role.name}">Developer</span>
-                            <button class="button button-delete" type="submit"><i
-                                    class="material-icons md-18">delete</i></button>
-                        </form>
+                <ul class="checkbox-list">
+                    <li th:each="role : ${roles}">
+                        <a th:href="@{|/roles/${role.id}|}"><span class="primary"
+                                                                  th:text="${role.name}">Developer</span></a>
+                        <a class="button button-delete" th:href="@{|/roles/${role.id}/delete|}">
+                            <i class="material-icons md-18">delete</i>
+                        </a>
                     </li>
                 </ul>
             </div>
-        </div>
-        <form th:action="@{/roles}" method="post">
             <div class="actions add-new-role">
-                <input type="text" th:field="${newRole.name}" placeholder="New Role..."/>
+                <input type="hidden" th:field="${roleToSave.id}"/>
+                <input type="text" th:field="${roleToSave.name}" placeholder="New Role..."/>
                 <button class="button button-add" type="submit"><i class="material-icons">add_box</i></button>
             </div>
         </form>
