@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+
+<body>
+<header th:replace="layout :: header"></header>
+<nav th:replace="layout :: nav"></nav>
+
+<section>
+    <div class="container wrapper">
+        <form th:action="@{/projects/add}" method="post" th:object="${projectToSave}">
+            <input type="hidden" th:field="*{id}"/>
+            <div>
+                <label for="project_name"> Project Name:</label>
+                <input type="text" id="project_name" th:field="*{name}"/>
+            </div>
+            <div>
+                <label for="project_description">Project Description:</label>
+                <textarea rows="4" id="project_description" th:field="*{description}"></textarea>
+            </div>
+            <div>
+                <label for="project_status">Project Status:</label>
+                <div class="custom-select">
+                    <span class="dropdown-arrow"></span>
+                    <select id="project_status" th:field="*{status}">
+                        <option th:each="status : ${allStatus}" th:value="${status}" th:text="${status.name}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="submit" value="Save" class="button">Save</button>
+                <a th:href="@{/}" class="button button-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+</body>
+
+</html>

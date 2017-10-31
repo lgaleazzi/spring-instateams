@@ -3,9 +3,11 @@ package com.instateams.service;
 import com.instateams.dao.ProjectDao;
 import com.instateams.exceptions.ObjectNotFoundException;
 import com.instateams.model.Project;
+import com.instateams.model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -18,6 +20,12 @@ public class ProjectServiceImpl implements ProjectService
     public List<Project> findAll()
     {
         return projectDao.findAll();
+    }
+
+    @Override
+    public List<Status> allStatus()
+    {
+        return Arrays.asList(Status.values());
     }
 
     @Override

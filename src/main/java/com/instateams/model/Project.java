@@ -20,7 +20,8 @@ public class Project
     private String description;
 
     @Column
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @ManyToMany
     @Column
@@ -62,12 +63,12 @@ public class Project
         this.description = description;
     }
 
-    public String getStatus()
+    public Status getStatus()
     {
         return status;
     }
 
-    public void setStatus(String status)
+    public void setStatus(Status status)
     {
         this.status = status;
     }
