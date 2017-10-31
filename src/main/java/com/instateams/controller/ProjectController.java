@@ -1,7 +1,9 @@
 package com.instateams.controller;
 
 import com.instateams.model.Project;
+import com.instateams.service.CollaboratorService;
 import com.instateams.service.ProjectService;
+import com.instateams.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +17,13 @@ import java.util.List;
 public class ProjectController
 {
     @Autowired
-    ProjectService projectService;
+    private ProjectService projectService;
+
+    @Autowired
+    private RoleService roleService;
+
+    @Autowired
+    private CollaboratorService collaboratorService;
 
     @RequestMapping("/")
     public String allProjects(Model model)
@@ -33,6 +41,7 @@ public class ProjectController
             model.addAttribute("projectToSave", new Project());
         }
         model.addAttribute("allStatus", projectService.allStatus());
+        model.addAttribute("allRoles", roleService.findAll());
 
         return "project/form";
     }

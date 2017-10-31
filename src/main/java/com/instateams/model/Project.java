@@ -2,6 +2,7 @@ package com.instateams.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,7 +32,11 @@ public class Project
     @Column
     private List<Collaborator> collaborators;
 
-    public Project() {}
+    public Project()
+    {
+        rolesNeeded = new ArrayList<>();
+        collaborators = new ArrayList<>();
+    }
 
     public Long getId()
     {

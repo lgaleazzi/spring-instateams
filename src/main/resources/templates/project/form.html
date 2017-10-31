@@ -27,6 +27,15 @@
                     </select>
                 </div>
             </div>
+            <div>
+                <label>Project Roles:</label>
+                <ul class="checkbox-list" th:field="${project.rolesNeeded}">
+                    <li th:each="role : ${allRoles}">
+                        <input type="checkbox" th:value="${role.id}"/>
+                        <span class="primary" th:text="${role.name}">Developer</span>
+                    </li>
+                </ul>
+            </div>
             <div class="actions">
                 <button type="submit" value="Save" class="button">Save</button>
                 <a th:href="@{/}" class="button button-secondary">Cancel</a>
