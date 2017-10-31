@@ -12,7 +12,8 @@
             <div class="project" th:each="project : ${projects}">
                 <h2><a href="project_detail.html" th:text="${project.name}">Website Project</a></h2>
                 <p th:text="${project.description}">Design and build a custom website</p>
-                <span class="tag active" th:text="${project.status.name}">Active</span>
+                <span class="tag" th:text="${project.status.name}"
+                      th:classappend="${project.status.state}">Active</span>
             </div>
         </div>
     </div>

@@ -197,7 +197,7 @@ strong {
 .tag.active {
 	background: #72c38d;
 }
-.tag.archived {
+.tag.inactive {
 	background: #bbbab9;
 }
 .list-item {
