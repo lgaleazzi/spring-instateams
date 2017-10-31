@@ -7,6 +7,7 @@ import com.instateams.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -52,5 +53,14 @@ public class ProjectController
         projectService.save(project);
 
         return "redirect:/";
+    }
+
+    @RequestMapping("/projects/{id}")
+    public String projectDetails(@PathVariable Long id, Model model)
+    {
+        Project project = projectService.findById(id);
+        model.addAttribute("project", project);
+
+        return "project/details";
     }
 }
