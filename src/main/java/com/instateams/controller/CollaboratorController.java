@@ -64,4 +64,13 @@ public class CollaboratorController
 
         return "redirect:/collaborators";
     }
+
+    @RequestMapping("collaborators/{id}/delete")
+    public String deleteCollaborator(@PathVariable Long id)
+    {
+        Collaborator collaborator = collaboratorService.findById(id);
+        collaboratorService.delete(collaborator);
+
+        return "redirect:/collaborators";
+    }
 }

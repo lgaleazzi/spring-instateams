@@ -18,7 +18,7 @@
                             <span class="secondary" th:text="${coll.role.name}"></span>
                         </a>
                     </div>
-                    <a class="button button-delete" href="#">
+                    <a class="button button-delete" th:href="@{|collaborators/${coll.id}/delete|}">
                         <i class="material-icons md-18">delete</i>
                     </a>
                 </li>
