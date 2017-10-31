@@ -47,7 +47,7 @@ public class ProjectController
         return "project/form";
     }
 
-    @RequestMapping(value = "/projects/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/projects/save", method = RequestMethod.POST)
     public String addProject(@Valid Project project)
     {
         projectService.save(project);
@@ -62,5 +62,16 @@ public class ProjectController
         model.addAttribute("project", project);
 
         return "project/details";
+    }
+
+    @RequestMapping("/projects/{id}/edit")
+    public String editForm(@PathVariable Long id, Model model)
+    {
+        Project project = projectService.findById(id);
+        model.addAttribute("projectToSave", project);
+        model.addAttribute("allStatus", projectService.allStatus());
+        model.addAttribute("allRoles", roleService.findAll());
+
+        return "project/form";
     }
 }

@@ -8,7 +8,7 @@
 
 <section>
     <div class="container wrapper">
-        <form th:action="@{/projects/add}" method="post" th:object="${projectToSave}">
+        <form th:action="@{/projects/save}" method="post" th:object="${projectToSave}">
             <input type="hidden" th:field="*{id}"/>
             <div>
                 <label for="project_name"> Project Name:</label>
