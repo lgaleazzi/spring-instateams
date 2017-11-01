@@ -1,5 +1,7 @@
 package com.instateams.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -10,7 +12,7 @@ public class Collaborator
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotBlank
     @Column
     private String name;
 
