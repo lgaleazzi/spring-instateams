@@ -1,12 +1,15 @@
 package com.instateams.controller;
 
 import com.instateams.model.Project;
+import com.instateams.model.Role;
+import com.instateams.model.Status;
 import com.instateams.service.CollaboratorService;
 import com.instateams.service.ProjectService;
 import com.instateams.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +29,18 @@ public class ProjectController
     @Autowired
     private CollaboratorService collaboratorService;
 
+    @ModelAttribute("allRoles")
+    public List<Role> populateRoles()
+    {
+        return roleService.findAll();
+    }
+
+    @ModelAttribute("allStatus")
+    public List<Status> populateStatus()
+    {
+        return projectService.allStatus();
+    }
+
     @RequestMapping("/")
     public String allProjects(Model model)
     {
@@ -39,10 +54,8 @@ public class ProjectController
     {
         if (!model.containsAttribute("projectToSave"))
         {
-            model.addAttribute("projectToSave", new Project());
+            model.addAttribute("project", new Project());
         }
-        model.addAttribute("allStatus", projectService.allStatus());
-        model.addAttribute("allRoles", roleService.findAll());
 
         return "project/form";
     }
@@ -50,6 +63,7 @@ public class ProjectController
     @RequestMapping(value = "/projects/save", method = RequestMethod.POST)
     public String addProject(@Valid Project project)
     {
+        System.out.println(project);
         projectService.save(project);
 
         return "redirect:/";
@@ -60,6 +74,7 @@ public class ProjectController
     {
         Project project = projectService.findById(id);
         model.addAttribute("project", project);
+        System.out.println(project);
 
         return "project/details";
     }
@@ -68,9 +83,7 @@ public class ProjectController
     public String editForm(@PathVariable Long id, Model model)
     {
         Project project = projectService.findById(id);
-        model.addAttribute("projectToSave", project);
-        model.addAttribute("allStatus", projectService.allStatus());
-        model.addAttribute("allRoles", roleService.findAll());
+        model.addAttribute("project", project);
 
         return "project/form";
     }

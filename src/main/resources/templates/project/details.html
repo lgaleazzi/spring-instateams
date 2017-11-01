@@ -15,6 +15,12 @@
                 <span class="tag" th:text="*{status.name}" th:classappend="*{status.state}">Active</span>
             </div>
             <div class="roles-collaborators">
+                <h3>Roles</h3>
+                <div class="list-item" th:each="role : *{roles}">
+                    <span class="primary" th:text="${role.name}"></span>
+                </div>
+            </div>
+            <div class="roles-collaborators">
                 <h3>Roles &amp; Collaborators</h3>
                 <div class="list-item">
                     <span class="primary">Developer</span>

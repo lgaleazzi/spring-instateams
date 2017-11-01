@@ -8,7 +8,7 @@
 
 <section>
     <div class="container wrapper">
-        <form th:action="@{/projects/save}" method="post" th:object="${projectToSave}">
+        <form th:action="@{/projects/save}" method="post" th:object="${project}">
             <input type="hidden" th:field="*{id}"/>
             <div>
                 <label for="project_name"> Project Name:</label>
@@ -31,8 +31,8 @@
                 <label>Project Roles:</label>
                 <ul class="checkbox-list">
                     <li th:each="role : ${allRoles}">
-                        <input type="checkbox" th:id="${{role}}" th:value="${{role}}" th:field="*{rolesNeeded}"/>
-                        <span class="primary" th:text="${role.name}"></span>
+                        <input type="checkbox" th:field="*{roles}" th:value="${role.id}"/>
+                        <span th:text="${role.name}"></span>
                     </li>
                 </ul>
             </div>

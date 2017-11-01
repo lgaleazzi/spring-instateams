@@ -3,7 +3,9 @@ package com.instateams.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Project
@@ -25,8 +27,8 @@ public class Project
     private Status status;
 
     @ManyToMany
-    @Column
-    private List<Role> rolesNeeded;
+    @JoinTable(joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     @ManyToMany
     @Column
@@ -34,7 +36,10 @@ public class Project
 
     public Project()
     {
-        rolesNeeded = new ArrayList<>();
+        if (roles == null)
+        {
+            roles = new HashSet<>();
+        }
         collaborators = new ArrayList<>();
     }
 
@@ -78,14 +83,14 @@ public class Project
         this.status = status;
     }
 
-    public List<Role> getRolesNeeded()
+    public Set<Role> getRoles()
     {
-        return rolesNeeded;
+        return roles;
     }
 
-    public void setRolesNeeded(List<Role> rolesNeeded)
+    public void setRoles(Set<Role> roles)
     {
-        this.rolesNeeded = rolesNeeded;
+        this.roles = roles;
     }
 
     public List<Collaborator> getCollaborators()
@@ -96,5 +101,41 @@ public class Project
     public void setCollaborators(List<Collaborator> collaborators)
     {
         this.collaborators = collaborators;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Project project = (Project)o;
+
+        if (id != null ? !id.equals(project.id) : project.id != null)
+            return false;
+        return name != null ? name.equals(project.name) : project.name == null;
+
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", roles=" + roles +
+                '}';
     }
 }
