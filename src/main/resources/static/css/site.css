@@ -286,6 +286,27 @@ strong {
     clear: both;
 }
 
+.flash {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 4px;
+    border: 2px solid;
+}
+
+.success {
+    color: #009B00;
+    border-color: #009B00;
+    background-color: #96FF9E;
+}
+
+
+.failure {
+    color: #ac4343;
+    border-color: #ac4343;
+    background-color: #E39696;
+}
+
 /* ==========================================================================
    Custom Select Styles
    ========================================================================== */
