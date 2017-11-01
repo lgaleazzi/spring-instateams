@@ -28,7 +28,7 @@ public class Project implements Comparable<Project>
     private Status status;
 
     @Column
-    @DateTimeFormat(pattern = "dd-MMM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
     @ManyToMany
