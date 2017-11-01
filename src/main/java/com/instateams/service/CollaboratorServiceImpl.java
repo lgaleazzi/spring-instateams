@@ -3,7 +3,6 @@ package com.instateams.service;
 import com.instateams.dao.CollaboratorDao;
 import com.instateams.exceptions.ObjectNotFoundException;
 import com.instateams.model.Collaborator;
-import com.instateams.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +18,6 @@ public class CollaboratorServiceImpl implements CollaboratorService
     public List<Collaborator> findAll()
     {
         return collaboratorDao.findAll();
-    }
-
-    @Override
-    public List<Collaborator> findByRole(Role role)
-    {
-        return collaboratorDao.findByRole(role);
     }
 
     @Override

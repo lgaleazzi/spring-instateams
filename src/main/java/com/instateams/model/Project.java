@@ -2,6 +2,7 @@ package com.instateams.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,9 @@ public class Project
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Column
+    private LocalDate startDate;
+
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
@@ -34,11 +38,18 @@ public class Project
 
     public Project()
     {
-        if (roles == null)
-        {
-            roles = new ArrayList<>();
-        }
+        roles = new ArrayList<>();
         collaborators = new ArrayList<>();
+    }
+
+    public LocalDate getStartDate()
+    {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate)
+    {
+        this.startDate = startDate;
     }
 
     public Long getId()

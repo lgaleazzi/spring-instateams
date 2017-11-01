@@ -19,6 +19,10 @@
                 <textarea rows="4" id="project_description" th:field="*{description}"></textarea>
             </div>
             <div>
+                <label for="project_start">Project start date:</label>
+                <input type="date" id="project_start" th:field="*{startDate}"/>
+            </div>
+            <div>
                 <label for="project_status">Project Status:</label>
                 <div class="custom-select">
                     <span class="dropdown-arrow"></span>
