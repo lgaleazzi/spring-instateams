@@ -67,7 +67,7 @@ public class ProjectController
     @RequestMapping("/projects/add")
     public String addForm(Model model)
     {
-        if (!model.containsAttribute("projectToSave"))
+        if (!model.containsAttribute("project"))
         {
             model.addAttribute("project", new Project());
         }
