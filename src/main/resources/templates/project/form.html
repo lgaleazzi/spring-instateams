@@ -15,12 +15,12 @@
                 <input type="text" id="project_name" th:field="*{name}"/>
             </div>
             <div>
-                <label for="project_description">Project Description:</label>
-                <textarea rows="4" id="project_description" th:field="*{description}"></textarea>
+                <label for="project_start">Project Start Date:</label>
+                <input type="date" id="project_start" th:field="*{startDate}"/>
             </div>
             <div>
-                <label for="project_start">Project start date:</label>
-                <input type="date" id="project_start" th:field="*{startDate}"/>
+                <label for="project_description">Project Description:</label>
+                <textarea rows="4" id="project_description" th:field="*{description}"></textarea>
             </div>
             <div>
                 <label for="project_status">Project Status:</label>

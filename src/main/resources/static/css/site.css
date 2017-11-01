@@ -367,12 +367,14 @@ form textarea {
 	line-height: 1.8em;
 }
 form input[type=text]:focus,
-form textarea:focus {
+form textarea:focus
+form input[type=date]:focus {
 	outline: 0;
 	border-color: #747372;
 }
 form input[type=text]:hover,
-form textarea:hover {
+form textarea:hover,
+ form input[type=date]:hover {
 	border-color: #747372;
 }
 input[type=submit] {
@@ -382,6 +384,16 @@ form select {
 	display: block;
 	margin-bottom: 30px;
 }
+
+form input[type=date] {
+	border: 2px solid #e1e0e0;
+	font-size: 18px;
+	padding: 4px 13px;
+	margin-bottom: 30px;
+	border-radius: 4px;
+	line-height: 1.8em;
+}
+
 form select:focus {
 	outline: 0;
 }
