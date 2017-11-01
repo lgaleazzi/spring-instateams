@@ -30,6 +30,10 @@
     </ul>
 </nav>
 
+<div th:fragment="flash" th:if="${flash != null}" class="container">
+    <div th:classappend="${#strings.toLowerCase(flash.status)}" th:text="${flash.message}" class="flash"></div>
+</div>
+
 </body>
 
 </html>
