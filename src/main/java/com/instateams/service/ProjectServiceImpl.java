@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -19,7 +20,9 @@ public class ProjectServiceImpl implements ProjectService
     @Override
     public List<Project> findAll()
     {
-        return projectDao.findAll();
+        List<Project> projects = projectDao.findAll();
+        Collections.sort(projects);
+        return projects;
     }
 
     @Override

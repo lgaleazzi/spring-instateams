@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Project
+public class Project implements Comparable<Project>
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -146,5 +146,11 @@ public class Project
                 ", status=" + status +
                 ", roles=" + roles +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Project o)
+    {
+        return this.startDate.compareTo(o.startDate);
     }
 }
