@@ -1,5 +1,6 @@
 package com.instateams.controller;
 
+import com.instateams.model.Collaborator;
 import com.instateams.model.Project;
 import com.instateams.model.Role;
 import com.instateams.model.Status;
@@ -39,6 +40,12 @@ public class ProjectController
     public List<Status> populateStatus()
     {
         return projectService.allStatus();
+    }
+
+    @ModelAttribute("allCollaborators")
+    public List<Collaborator> populateCollaborators()
+    {
+        return collaboratorService.findAll();
     }
 
     @RequestMapping("/")
@@ -95,6 +102,15 @@ public class ProjectController
         return "project/form";
     }
 
+    @RequestMapping("projects/{id}/collaborators")
+    public String editCollForm(@PathVariable Long id, Model model)
+    {
+        Project project = projectService.findById(id);
+        model.addAttribute("project", project);
+
+        return "project/collaborators";
+    }
+
     private void fillData()
     {
         Role role1 = new Role();
@@ -106,6 +122,28 @@ public class ProjectController
         roleService.save(role1);
         roleService.save(role2);
         roleService.save(role3);
+
+        Collaborator coll1 = new Collaborator();
+        coll1.setName("Kim");
+        coll1.setRole(role1);
+        Collaborator coll2 = new Collaborator();
+        coll2.setName("Janice");
+        coll2.setRole(role1);
+        Collaborator coll3 = new Collaborator();
+        coll3.setName("Amanda");
+        coll3.setRole(role2);
+        Collaborator coll4 = new Collaborator();
+        coll4.setName("Sam");
+        coll4.setRole(role3);
+        Collaborator coll5 = new Collaborator();
+        coll5.setName("Hadrian");
+        coll5.setRole(role2);
+
+        collaboratorService.save(coll1);
+        collaboratorService.save(coll2);
+        collaboratorService.save(coll3);
+        collaboratorService.save(coll4);
+        collaboratorService.save(coll5);
 
         Project project1 = new Project();
         project1.setName("Implement Instateams");

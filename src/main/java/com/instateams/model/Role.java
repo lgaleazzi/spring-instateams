@@ -2,6 +2,8 @@ package com.instateams.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Role implements Comparable<Role>
@@ -14,7 +16,13 @@ public class Role implements Comparable<Role>
     @Column
     private String name;
 
-    public Role() {}
+    @OneToMany(mappedBy = "role")
+    private List<Collaborator> collaborators;
+
+    public Role()
+    {
+        collaborators = new ArrayList<>();
+    }
 
     public Long getId()
     {
@@ -34,6 +42,16 @@ public class Role implements Comparable<Role>
     public void setName(String name)
     {
         this.name = name;
+    }
+
+    public List<Collaborator> getCollaborators()
+    {
+        return collaborators;
+    }
+
+    public void setCollaborators(List<Collaborator> collaborators)
+    {
+        this.collaborators = collaborators;
     }
 
     @Override

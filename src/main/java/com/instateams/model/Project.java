@@ -3,9 +3,7 @@ package com.instateams.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Project
@@ -28,7 +26,7 @@ public class Project
 
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private List<Role> roles;
 
     @ManyToMany
     @Column
@@ -38,7 +36,7 @@ public class Project
     {
         if (roles == null)
         {
-            roles = new HashSet<>();
+            roles = new ArrayList<>();
         }
         collaborators = new ArrayList<>();
     }
@@ -83,12 +81,12 @@ public class Project
         this.status = status;
     }
 
-    public Set<Role> getRoles()
+    public List<Role> getRoles()
     {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles)
+    public void setRoles(List<Role> roles)
     {
         this.roles = roles;
     }

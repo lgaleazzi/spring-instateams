@@ -2,6 +2,7 @@ package com.instateams.dao;
 
 
 import com.instateams.model.Role;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class RoleDaoImpl implements RoleDao
         CriteriaQuery<Role> criteria = builder.createQuery(Role.class);
         criteria.from(Role.class);
         List<Role> roles = session.createQuery(criteria).getResultList();
+        roles.forEach(role -> Hibernate.initialize(role.getCollaborators()));
         session.close();
 
         return roles;
