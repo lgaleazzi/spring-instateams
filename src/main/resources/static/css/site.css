@@ -276,6 +276,16 @@ strong {
     margin-bottom: 30px;
 }
 
+.form-block {
+    margin-bottom: 30px;
+}
+
+.error-message {
+    color: #ac4343;
+    padding: 5px;
+    clear: both;
+}
+
 /* ==========================================================================
    Custom Select Styles
    ========================================================================== */
@@ -361,7 +371,6 @@ form textarea {
 	border: 2px solid #e1e0e0;
 	font-size: 18px;
 	padding: 4px 13px;
-	margin-bottom: 30px;
 	border-radius: 4px;
 	width: calc(100% - 32px);
 	line-height: 1.8em;
@@ -382,14 +391,12 @@ input[type=submit] {
 }
 form select {
 	display: block;
-	margin-bottom: 30px;
 }
 
 form input[type=date] {
 	border: 2px solid #e1e0e0;
 	font-size: 18px;
 	padding: 4px 13px;
-	margin-bottom: 30px;
 	border-radius: 4px;
 	line-height: 1.8em;
 }
@@ -450,20 +457,10 @@ form a {
     color: #888;
 }
 
-.error input {
-    border-width: 2px;
+form .add-new-role .error,
+form .add-new-collaborator .error,
+form .form-block .error {
     border-color: #ac4343;
-    border-bottom: none;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.error .error-message {
-    border: 2px solid #ac4343;
-    border-radius: 0 0 6px 6px;
-    background-color: #ac4343;
-    color: rgb(254,251,251);
-    padding: 10px;
 }
 
 /* ==========================================================================
