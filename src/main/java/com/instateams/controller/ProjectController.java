@@ -104,7 +104,7 @@ public class ProjectController
         {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.project", result);
             redirectAttributes.addFlashAttribute("project", project);
-            return String.format("redirect:/projects/%s", project.getId());
+            return String.format("redirect:/projects/%s/edit", project.getId());
         }
 
         projectService.save(project);
@@ -129,7 +129,10 @@ public class ProjectController
     public String editForm(@PathVariable Long id, Model model)
     {
         Project project = projectService.findById(id);
-        model.addAttribute("project", project);
+        if (!model.containsAttribute("project"))
+        {
+            model.addAttribute("project", project);
+        }
         model.addAttribute("action", "/projects/" + project.getId());
 
         return "project/form";
