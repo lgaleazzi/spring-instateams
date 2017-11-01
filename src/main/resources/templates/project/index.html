@@ -11,6 +11,7 @@
         <div class="project-list">
             <div class="project" th:each="project : ${projects}">
                 <h2><a th:href="@{|/projects/${project.id}|}" th:text="${project.name}">Website Project</a></h2>
+                <h3>Starting on: <span th:text="${project.startDate}"></span></h3>
                 <p th:text="${project.description}">Design and build a custom website</p>
                 <span class="tag" th:text="${project.status.name}"
                       th:classappend="${project.status.state}">Active</span>

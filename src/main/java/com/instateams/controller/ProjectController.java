@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -149,6 +150,7 @@ public class ProjectController
         project1.setName("Implement Instateams");
         project1.setDescription("A cool project");
         project1.setStatus(Status.RUNNING);
+        project1.setStartDate(LocalDate.of(2018, 02, 03));
         project1.getRoles().add(role1);
         project1.getRoles().add(role2);
 
@@ -158,6 +160,7 @@ public class ProjectController
         project2.setName("Implement giflib");
         project2.setDescription("Another cool project");
         project2.setStatus(Status.ARCHIVED);
+        project2.setStartDate(LocalDate.of(2017, 05, 11));
         project2.getRoles().add(role2);
         project2.getRoles().add(role3);
 

@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 @Component
 public class LocalDateConverter implements Converter<String, LocalDate>
 {
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
 
     @Override
     public LocalDate convert(String source)

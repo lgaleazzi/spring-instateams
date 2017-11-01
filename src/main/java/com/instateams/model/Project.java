@@ -1,5 +1,7 @@
 package com.instateams.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -25,7 +27,7 @@ public class Project implements Comparable<Project>
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Column
+    @DateTimeFormat(pattern = "dd-MMM-YYYY")
     private LocalDate startDate;
 
     @ManyToMany
