@@ -27,7 +27,8 @@ public class Project implements Comparable<Project>
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @DateTimeFormat(pattern = "dd-MMM-YYYY")
+    @Column
+    @DateTimeFormat(pattern = "dd-MMM-yyyy")
     private LocalDate startDate;
 
     @ManyToMany
