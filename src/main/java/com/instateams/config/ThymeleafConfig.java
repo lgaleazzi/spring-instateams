@@ -15,7 +15,6 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
-import org.thymeleaf.templateresolver.ITemplateResolver;
 
 @Configuration
 @ConditionalOnClass({SpringTemplateEngine.class})
@@ -37,8 +36,8 @@ public class ThymeleafConfig implements ApplicationContextAware
     @Bean
     public ViewResolver viewResolver()
     {
-        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
-        resolver.setOrder(2147483642);
+        final ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+        resolver.setOrder(1);
         resolver.setTemplateEngine(templateEngine());
         resolver.setCharacterEncoding("UTF-8");
         return resolver;
@@ -48,19 +47,20 @@ public class ThymeleafConfig implements ApplicationContextAware
     //made this @Bean (vs private in Thymeleaf migration docs ), otherwise MessageSource wasn't autowired.
     public TemplateEngine templateEngine()
     {
-        SpringTemplateEngine engine = new SpringTemplateEngine();
+        final SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setTemplateResolver(templateResolver());
         return engine;
     }
 
-    private ITemplateResolver templateResolver()
+    @Bean
+    public SpringResourceTemplateResolver templateResolver()
     {
-        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+        final SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
         resolver.setApplicationContext(applicationContext);
-        resolver.setPrefix(this.properties.getPrefix());
-        resolver.setSuffix(this.properties.getSuffix());
-        resolver.setTemplateMode(this.properties.getMode());
-        resolver.setCacheable(this.properties.isCache());
+        resolver.setPrefix("classpath:/templates/");
+        resolver.setSuffix(".html");
+        resolver.setTemplateMode("HTML");
+        resolver.setCacheable(false);
         return resolver;
     }
 
