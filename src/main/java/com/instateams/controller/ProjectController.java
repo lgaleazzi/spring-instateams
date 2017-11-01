@@ -1,5 +1,6 @@
 package com.instateams.controller;
 
+import com.instateams.controller.flashmessage.FlashMessage;
 import com.instateams.model.Collaborator;
 import com.instateams.model.Project;
 import com.instateams.model.Role;
@@ -10,10 +11,12 @@ import com.instateams.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -71,25 +74,53 @@ public class ProjectController
         {
             model.addAttribute("project", new Project());
         }
+        model.addAttribute("action", "/projects/add");
 
         return "project/form";
     }
 
-    @RequestMapping(value = "/projects/save", method = RequestMethod.POST)
-    public String addProject(@Valid Project project)
+    @RequestMapping(value = "/projects/add", method = RequestMethod.POST)
+    public String addProject(@Valid Project project, BindingResult result, RedirectAttributes redirectAttributes)
     {
-        System.out.println(project);
+        if (result.hasErrors())
+        {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.project", result);
+            redirectAttributes.addFlashAttribute("project", project);
+            return "redirect:/projects/add";
+        }
+
         projectService.save(project);
+
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project successfully added",
+                FlashMessage.Status.SUCCESS));
 
         return "redirect:/";
     }
+
+    @RequestMapping(value = "/projects/{id}", method = RequestMethod.POST)
+    public String editProject(@Valid Project project, BindingResult result, RedirectAttributes redirectAttributes)
+    {
+        if (result.hasErrors())
+        {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.project", result);
+            redirectAttributes.addFlashAttribute("project", project);
+            return String.format("redirect:/projects/%s", project.getId());
+        }
+
+        projectService.save(project);
+
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project successfully updated",
+                FlashMessage.Status.SUCCESS));
+
+        return "redirect:/";
+    }
+
 
     @RequestMapping("/projects/{id}")
     public String projectDetails(@PathVariable Long id, Model model)
     {
         Project project = projectService.findById(id);
         model.addAttribute("project", project);
-        System.out.println(project);
 
         return "project/details";
     }
@@ -99,6 +130,7 @@ public class ProjectController
     {
         Project project = projectService.findById(id);
         model.addAttribute("project", project);
+        model.addAttribute("action", "/projects/" + project.getId());
 
         return "project/form";
     }

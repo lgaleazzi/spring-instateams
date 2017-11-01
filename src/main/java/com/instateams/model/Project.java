@@ -1,9 +1,9 @@
 package com.instateams.model;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +15,11 @@ public class Project implements Comparable<Project>
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotBlank
     @Column
     private String name;
 
-    @NotNull
+    @NotBlank
     @Column
     private String description;
 
