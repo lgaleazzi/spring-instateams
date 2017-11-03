@@ -49,9 +49,9 @@ public class DataLoader implements ApplicationRunner
 
         Arrays.asList(
                 new Project("Implement Instateams", "A tool to manage project teams", Status.RUNNING,
-                        LocalDate.of(2018, 02, 03)),
+                        LocalDate.of(2018, 2, 3)),
                 new Project("Implement giflib", "A tool to manage a gif library", Status.ARCHIVED,
-                        LocalDate.of(2017, 05, 11))
+                        LocalDate.of(2017, 5, 11))
         ).forEach(projectService::save);
     }
 }
