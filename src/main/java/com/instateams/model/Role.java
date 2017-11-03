@@ -22,6 +22,12 @@ public class Role implements Comparable<Role>
 
     public Role()
     {
+        this(null);
+    }
+
+    public Role(String name)
+    {
+        this.name = name;
         collaborators = new ArrayList<>();
     }
 

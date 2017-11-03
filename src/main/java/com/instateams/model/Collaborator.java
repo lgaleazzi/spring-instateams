@@ -20,7 +20,16 @@ public class Collaborator
     @NotNull
     private Role role;
 
-    public Collaborator() {}
+    public Collaborator()
+    {
+        this(null, null);
+    }
+
+    public Collaborator(String name, Role role)
+    {
+        this.name = name;
+        this.role = role;
+    }
 
     public Long getId()
     {

@@ -41,8 +41,17 @@ public class Project implements Comparable<Project>
 
     public Project()
     {
-        roles = new ArrayList<>();
-        collaborators = new ArrayList<>();
+        this(null, null, null, null);
+    }
+
+    public Project(String name, String description, Status status, LocalDate startDate)
+    {
+        this.name = name;
+        this.description = description;
+        this.status = status;
+        this.startDate = startDate;
+        this.roles = new ArrayList<>();
+        this.collaborators = new ArrayList<>();
     }
 
     public LocalDate getStartDate()
