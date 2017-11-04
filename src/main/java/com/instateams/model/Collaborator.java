@@ -3,7 +3,6 @@ package com.instateams.model;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Collaborator
@@ -17,7 +16,6 @@ public class Collaborator
     private String name;
 
     @ManyToOne
-    @NotNull
     private Role role;
 
     public Collaborator()

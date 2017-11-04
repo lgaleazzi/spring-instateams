@@ -61,6 +61,11 @@ public class Role implements Comparable<Role>
         this.collaborators = collaborators;
     }
 
+    public boolean hasCollaborators()
+    {
+        return !(collaborators == null || collaborators.isEmpty());
+    }
+
     @Override
     public boolean equals(Object o)
     {

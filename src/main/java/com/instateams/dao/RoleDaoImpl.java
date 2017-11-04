@@ -37,6 +37,7 @@ public class RoleDaoImpl implements RoleDao
     {
         Session session = sessionFactory.openSession();
         Role role = session.get(Role.class, id);
+        Hibernate.initialize(role.getCollaborators());
         session.close();
 
         return role;
@@ -60,5 +61,11 @@ public class RoleDaoImpl implements RoleDao
         session.delete(role);
         session.getTransaction().commit();
         session.close();
+    }
+
+    @Override
+    public boolean hasCollaborators(Long roleId)
+    {
+        return findById(roleId).hasCollaborators();
     }
 }

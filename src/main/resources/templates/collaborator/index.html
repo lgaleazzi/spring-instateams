@@ -16,7 +16,8 @@
                     <div class="collaborator">
                         <a th:href="@{|/collaborators/${coll.id}|}">
                             <span class="primary" th:text="${coll.name}"></span>
-                            <span class="secondary" th:text="${coll.role.name}"></span>
+                            <span class="secondary"
+                                  th:text="${coll.role} == null ? 'No role assigned' : ${coll.role.name}"></span>
                         </a>
                     </div>
                     <a class="button button-delete" th:href="@{|collaborators/${coll.id}/delete|}">
