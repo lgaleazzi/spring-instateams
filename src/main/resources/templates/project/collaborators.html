@@ -16,6 +16,9 @@
             <input type="hidden" th:field="*{name}"/>
             <input type="hidden" th:field="*{status}"/>
             <label>Edit Collaborators: <span th:text="*{name}"></span></label>
+            <div th:if="*{roles.isEmpty()}">There are no roles assigned to this project. Please edit the project to add
+                the needed roles.
+            </div>
             <ul class="checkbox-list">
                 <li th:each="role : *{roles}">
                     <span class="primary" th:text="${role.name}">Developer</span>
