@@ -10,6 +10,5 @@ public interface RoleDao
     Role findById(Long id);
     void save(Role role);
     void delete(Role role);
-
     boolean hasCollaborators(Long roleId);
 }

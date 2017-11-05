@@ -3,6 +3,7 @@ package com.instateams.service;
 import com.instateams.dao.RoleDao;
 import com.instateams.exceptions.ObjectNotFoundException;
 import com.instateams.model.Collaborator;
+import com.instateams.model.Project;
 import com.instateams.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ public class RoleServiceImpl implements RoleService
 
     @Autowired
     private CollaboratorService collaboratorService;
+
+    @Autowired
+    private ProjectService projectService;
 
     @Override
     public List<Role> findAll()
@@ -44,6 +48,11 @@ public class RoleServiceImpl implements RoleService
     @Override
     public void delete(Role role)
     {
+        List<Project> projectsWithRole = projectService.findByRole(role);
+        if (!(projectsWithRole == null || projectsWithRole.isEmpty()))
+        {
+            projectsWithRole.forEach(project -> projectService.unassignRole(project.getId(), role));
+        }
         if (roleDao.hasCollaborators(role.getId()))
         {
             List<Collaborator> collaborators = collaboratorService.findByRole(role);

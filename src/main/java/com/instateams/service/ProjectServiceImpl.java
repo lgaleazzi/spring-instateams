@@ -2,6 +2,7 @@ package com.instateams.service;
 
 import com.instateams.dao.ProjectDao;
 import com.instateams.exceptions.ObjectNotFoundException;
+import com.instateams.model.Collaborator;
 import com.instateams.model.Project;
 import com.instateams.model.Role;
 import com.instateams.model.Status;
@@ -52,6 +53,35 @@ public class ProjectServiceImpl implements ProjectService
             throw new ObjectNotFoundException();
         }
         return project;
+    }
+
+    @Override
+    public void unassignRole(Long projectId, Role role)
+    {
+        Project project = findById(projectId);
+        //remove collaborator with that role assigned to the project
+        Collaborator collaboratorWithRole = project.getCollaborators()
+                .stream()
+                .filter(collaborator -> collaborator.getRole().equals(role))
+                .findFirst()
+                .orElse(null);
+
+        if (collaboratorWithRole != null)
+        {
+            unassignCollaborator(projectId, collaboratorWithRole);
+        }
+
+        //remove the role
+        project.getRoles().remove(role);
+
+        projectDao.save(project);
+    }
+
+    public void unassignCollaborator(Long projectId, Collaborator collaborator)
+    {
+        Project project = findById(projectId);
+        project.getCollaborators().remove(collaborator);
+        projectDao.save(project);
     }
 
     @Override

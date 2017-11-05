@@ -11,9 +11,12 @@ public interface ProjectService
     List<Project> findAll();
 
     List<Project> findByRole(Role role);
+
     List<Status> allStatus();
 
     Project findById(Long id);
+
+    void unassignRole(Long projectId, Role role);
 
     void save(Project project);
 
