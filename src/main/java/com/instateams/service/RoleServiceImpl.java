@@ -49,7 +49,6 @@ public class RoleServiceImpl implements RoleService
             List<Collaborator> collaborators = collaboratorService.findByRole(role);
             collaborators.forEach(collaboratorService::unassignRole);
         }
-
         roleDao.delete(role);
     }
 }
