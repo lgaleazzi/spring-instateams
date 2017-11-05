@@ -124,6 +124,14 @@ public class Project implements Comparable<Project>
         this.collaborators = collaborators;
     }
 
+    public List<Role> getEmptyRoles()
+    {
+        List<Role> emptyRoles = new ArrayList<>(roles);
+        collaborators.forEach(collaborator -> emptyRoles.remove(collaborator.getRole()));
+
+        return emptyRoles;
+    }
+
     @Override
     public boolean equals(Object o)
     {
