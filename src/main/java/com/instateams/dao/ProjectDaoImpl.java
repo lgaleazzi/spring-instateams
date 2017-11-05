@@ -1,5 +1,6 @@
 package com.instateams.dao;
 
+import com.instateams.model.Collaborator;
 import com.instateams.model.Project;
 import com.instateams.model.Role;
 import org.hibernate.Hibernate;
@@ -23,11 +24,31 @@ public class ProjectDaoImpl implements ProjectDao
     public List<Project> findAll()
     {
         Session session = sessionFactory.openSession();
+
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Project> criteria = builder.createQuery(Project.class);
         criteria.from(Project.class);
         List<Project> projects = session.createQuery(criteria).getResultList();
+
         projects.forEach(project -> Hibernate.initialize(project.getRoles()));
+
+        session.close();
+
+        return projects;
+    }
+
+    @Override
+    public List<Project> findByCollaborator(Collaborator collaborator)
+    {
+        Session session = sessionFactory.openSession();
+
+        TypedQuery<Project> query = session
+                .createQuery("select distinct project from Project project join project.collaborators collaborator " +
+                        "where collaborator = :collaborator", Project.class)
+                .setParameter("collaborator", collaborator);
+
+        List<Project> projects = query.getResultList();
+
         session.close();
 
         return projects;
@@ -41,20 +62,11 @@ public class ProjectDaoImpl implements ProjectDao
                 .createQuery("select distinct project from Project project join project.roles role where role = :role", Project.class)
                 .setParameter("role", role);
 
-/*
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Project> criteria = builder.createQuery(Project.class);
-        Root<Project> root = criteria.from(Project.class);
+        List<Project> projects = query.getResultList();
 
-        Path<List<Role>> roles = root.get("roles");
-        Expression<Role> roleParameter = builder.parameter(Role.class, "role");
+        session.close();
 
-        criteria.select(root).where(roleParameter.in(roles));
-
-        TypedQuery<Project> query = session.createQuery(criteria)
-                .setParameter("role", role);*/
-
-        return query.getResultList();
+        return projects;
     }
 
     @Override
@@ -62,10 +74,12 @@ public class ProjectDaoImpl implements ProjectDao
     {
         Session session = sessionFactory.openSession();
         Project project = session.get(Project.class, id);
+
         Hibernate.initialize(project.getRoles());
         Hibernate.initialize(project.getCollaborators());
         project.getCollaborators().forEach(collaborator -> Hibernate.initialize(collaborator.getRole()));
         project.getRoles().forEach(role -> Hibernate.initialize(role.getCollaborators()));
+
         session.close();
 
         return project;

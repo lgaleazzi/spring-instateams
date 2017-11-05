@@ -3,6 +3,7 @@ package com.instateams.service;
 import com.instateams.dao.CollaboratorDao;
 import com.instateams.exceptions.ObjectNotFoundException;
 import com.instateams.model.Collaborator;
+import com.instateams.model.Project;
 import com.instateams.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class CollaboratorServiceImpl implements CollaboratorService
 {
     @Autowired
     private CollaboratorDao collaboratorDao;
+
+    @Autowired
+    private ProjectService projectService;
 
     @Override
     public List<Collaborator> findAll()
@@ -55,6 +59,12 @@ public class CollaboratorServiceImpl implements CollaboratorService
     @Override
     public void delete(Collaborator collaborator)
     {
+        List<Project> projectsWithCollaborator = projectService.findByCollaborator(collaborator);
+        if (!(projectsWithCollaborator == null || projectsWithCollaborator.isEmpty()))
+        {
+            projectsWithCollaborator.forEach(project -> projectService.unassignCollaborator(project.getId(), collaborator));
+        }
+
         collaboratorDao.delete(collaborator);
     }
 }

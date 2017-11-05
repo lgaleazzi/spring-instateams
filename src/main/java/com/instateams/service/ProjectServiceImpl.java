@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProjectServiceImpl implements ProjectService
@@ -29,13 +28,15 @@ public class ProjectServiceImpl implements ProjectService
     }
 
     @Override
+    public List<Project> findByCollaborator(Collaborator collaborator)
+    {
+        return projectDao.findByCollaborator(collaborator);
+    }
+
+    @Override
     public List<Project> findByRole(Role role)
     {
-        //TODO: implement with findByRole once it works
-        return projectDao.findAll()
-                .stream()
-                .filter(project -> project.getRoles().contains(role))
-                .collect(Collectors.toList());
+        return projectDao.findByRole(role);
     }
 
     @Override
