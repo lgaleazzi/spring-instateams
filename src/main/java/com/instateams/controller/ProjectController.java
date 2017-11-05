@@ -86,7 +86,7 @@ public class ProjectController
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project successfully added",
                 FlashMessage.Status.SUCCESS));
 
-        return "redirect:/";
+        return String.format("redirect:/projects/%s", project.getId());
     }
 
     @RequestMapping(value = "/projects/{id}", method = RequestMethod.POST)
@@ -104,7 +104,7 @@ public class ProjectController
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project successfully updated",
                 FlashMessage.Status.SUCCESS));
 
-        return "redirect:/";
+        return String.format("redirect:/projects/%s", project.getId());
     }
 
 
