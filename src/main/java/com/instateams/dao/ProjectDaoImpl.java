@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 @Repository
@@ -34,10 +35,14 @@ public class ProjectDaoImpl implements ProjectDao
 
     public List<Project> findByRole(Role role)
     {
-        //TODO: finish this
         Session session = sessionFactory.openSession();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
 
+        TypedQuery<Project> query = session
+                .createQuery("select distinct project from Project project join project.roles role where role = :role", Project.class)
+                .setParameter("role", role);
+
+/*
+        CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Project> criteria = builder.createQuery(Project.class);
         Root<Project> root = criteria.from(Project.class);
 
@@ -47,10 +52,9 @@ public class ProjectDaoImpl implements ProjectDao
         criteria.select(root).where(roleParameter.in(roles));
 
         TypedQuery<Project> query = session.createQuery(criteria)
-                .setParameter("role", role);
-        List<Project> projects = query.getResultList();
+                .setParameter("role", role);*/
 
-        return projects;
+        return query.getResultList();
     }
 
     @Override

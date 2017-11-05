@@ -25,7 +25,7 @@
                     <span class="primary" th:text="${role.name}">Developer</span>
                 </div>
                 <div class="list-item" th:each="collaborator : *{collaborators}">
-                    <span class="primary" th:text="${collaborator.role.name}">Developer</span>
+                    <span class="primary" th:if="${collaborator.role} != null" th:text="${collaborator.role.name}">Developer</span>
                     <span class="secondary" th:text="${collaborator.name}">Michael Pemulis</span>
                 </div>
             </div>
