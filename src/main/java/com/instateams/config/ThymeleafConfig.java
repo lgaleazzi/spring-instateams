@@ -45,12 +45,11 @@ public class ThymeleafConfig implements ApplicationContextAware
     }
 
     @Bean
-    //made this @Bean (vs private in Thymeleaf migration docs ), otherwise MessageSource wasn't autowired.
     public TemplateEngine templateEngine()
     {
         final SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setTemplateResolver(templateResolver());
-        engine.addDialect(new Java8TimeDialect());
+        engine.addDialect(new Java8TimeDialect()); //Add so templates can deal with LocalDate
         return engine;
     }
 
