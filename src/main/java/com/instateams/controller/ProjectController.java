@@ -83,7 +83,7 @@ public class ProjectController
 
         projectService.save(project);
 
-        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project successfully added",
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project added",
                 FlashMessage.Status.SUCCESS));
 
         return String.format("redirect:/projects/%s", project.getId());
@@ -101,7 +101,7 @@ public class ProjectController
 
         projectService.save(project);
 
-        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project successfully updated",
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project updated",
                 FlashMessage.Status.SUCCESS));
 
         return String.format("redirect:/projects/%s", project.getId());
@@ -145,7 +145,7 @@ public class ProjectController
         Project project = projectService.findById(id);
         projectService.delete(project);
 
-        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project successfully deleted",
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project deleted",
                 FlashMessage.Status.SUCCESS));
 
         return "redirect:/";

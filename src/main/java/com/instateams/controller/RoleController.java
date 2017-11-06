@@ -47,7 +47,7 @@ public class RoleController
 
         roleService.save(role);
 
-        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Role successfully added", FlashMessage.Status
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Role added", FlashMessage.Status
                 .SUCCESS));
 
         return "redirect:/roles";
@@ -74,7 +74,7 @@ public class RoleController
 
         roleService.save(role);
 
-        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Role successfully updated", FlashMessage.Status
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Role updated", FlashMessage.Status
                 .SUCCESS));
 
         return "redirect:/roles";
@@ -85,7 +85,7 @@ public class RoleController
     {
         Role role = roleService.findById(id);
         roleService.delete(role);
-        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Role successfully deleted.", FlashMessage.Status
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Role deleted.", FlashMessage.Status
                 .SUCCESS));
         return "redirect:/roles";
     }

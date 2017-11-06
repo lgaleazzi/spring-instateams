@@ -43,6 +43,7 @@ public class CollaboratorController
         {
             model.addAttribute("collaborator", new Collaborator());
         }
+        model.addAttribute("action", "/collaborators");
 
         return "collaborator/index";
     }
@@ -59,7 +60,7 @@ public class CollaboratorController
 
         collaboratorService.save(collaborator);
 
-        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator successfully added",
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator added",
                 FlashMessage.Status.SUCCESS));
 
         return "redirect:/collaborators";
@@ -74,6 +75,7 @@ public class CollaboratorController
         {
             model.addAttribute("collaborator", collaborator);
         }
+        model.addAttribute("action", String.format("/collaborators/%s", id));
 
         return "collaborator/index";
     }
@@ -90,7 +92,7 @@ public class CollaboratorController
 
         collaboratorService.save(collaborator);
 
-        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator successfully updated",
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator updated",
                 FlashMessage.Status.SUCCESS));
 
 
@@ -103,7 +105,7 @@ public class CollaboratorController
         Collaborator collaborator = collaboratorService.findById(id);
         collaboratorService.delete(collaborator);
 
-        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator successfully deleted.",
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator deleted.",
                 FlashMessage.Status.SUCCESS));
 
 

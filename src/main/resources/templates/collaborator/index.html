@@ -9,7 +9,7 @@
 <section>
     <div th:replace="layout :: flash"></div>
     <div class="container wrapper">
-        <form th:action="@{/collaborators}" method="post">
+        <form th:action="@{${action}}" method="post">
             <h2>Manage Collaborators</h2>
             <ul class="checkbox-list">
                 <li class="collaborator-list" th:each="coll : ${collaborators}">
