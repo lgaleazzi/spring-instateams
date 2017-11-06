@@ -58,10 +58,12 @@ public class ProjectDaoImpl extends GenericDao<Project> implements ProjectDao
         Session session = getSessionFactory().openSession();
         Project project = session.get(Project.class, id);
 
-        Hibernate.initialize(project.getRoles());
-        Hibernate.initialize(project.getCollaborators());
-        project.getCollaborators().forEach(collaborator -> Hibernate.initialize(collaborator.getRole()));
-        project.getRoles().forEach(role -> Hibernate.initialize(role.getCollaborators()));
+        if (project != null)
+        {
+            Hibernate.initialize(project.getRoles());
+            Hibernate.initialize(project.getCollaborators());
+            project.getRoles().forEach(role -> Hibernate.initialize(role.getCollaborators()));
+        }
 
         session.close();
 
