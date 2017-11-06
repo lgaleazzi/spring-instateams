@@ -59,6 +59,7 @@ public class RoleController
         Role role = roleService.findById(id);
         model.addAttribute("role", role);
         model.addAttribute("action", String.format("/roles/%s", id));
+
         return "role/index";
     }
 

@@ -38,7 +38,10 @@ public class RoleDaoImpl extends GenericDao<Role> implements RoleDao
         Session session = getSessionFactory().openSession();
         Role role = session.get(Role.class, id);
 
-        Hibernate.initialize(role.getCollaborators());
+        if (role != null)
+        {
+            Hibernate.initialize(role.getCollaborators());
+        }
 
         session.close();
 

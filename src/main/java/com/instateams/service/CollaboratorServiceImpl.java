@@ -38,7 +38,7 @@ public class CollaboratorServiceImpl implements CollaboratorService
         Collaborator collaborator = collaboratorDao.findById(id);
         if (collaborator == null)
         {
-            throw new ObjectNotFoundException();
+            throw new ObjectNotFoundException("Collaborator was not found");
         }
         return collaborator;
     }

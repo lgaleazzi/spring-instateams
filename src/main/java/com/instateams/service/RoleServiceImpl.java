@@ -34,7 +34,7 @@ public class RoleServiceImpl implements RoleService
         Role role = roleDao.findById(id);
         if (role == null)
         {
-            throw new ObjectNotFoundException();
+            throw new ObjectNotFoundException("Role was not found");
         }
         return roleDao.findById(id);
     }

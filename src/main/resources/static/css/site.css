@@ -294,6 +294,10 @@ strong {
     clear: both;
 }
 
+.errors {
+    padding: 20px;
+}
+
 .flash {
     padding: 10px;
     text-align: center;

@@ -51,7 +51,7 @@ public class ProjectServiceImpl implements ProjectService
         Project project = projectDao.findById(id);
         if (project == null)
         {
-            throw new ObjectNotFoundException();
+            throw new ObjectNotFoundException("Project was not found");
         }
         return project;
     }
