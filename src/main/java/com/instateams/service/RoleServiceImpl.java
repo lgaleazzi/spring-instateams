@@ -53,11 +53,13 @@ public class RoleServiceImpl implements RoleService
         {
             projectsWithRole.forEach(project -> projectService.unassignRole(project.getId(), role));
         }
+
         if (role.hasCollaborators())
         {
             List<Collaborator> collaborators = collaboratorService.findByRole(role);
             collaborators.forEach(collaboratorService::unassignRole);
         }
+
         roleDao.delete(role);
     }
 }
