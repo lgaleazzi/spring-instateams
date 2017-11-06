@@ -16,6 +16,9 @@
                 <p th:text="${project.description}">Design and build a custom website</p>
                 <span class="tag" th:text="${project.status.name}"
                       th:classappend="${project.status.state}">Active</span>
+                <a class="button button-delete" th:href="@{|/projects/${project.id}/delete|}">
+                    <i class="material-icons md-18">delete</i>
+                </a>
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@
                     <li th:each="roleItem : ${roles}">
                         <a class="element" th:href="@{|/roles/${roleItem.id}|}"><span class="primary"
                                                                                       th:text="${roleItem.name}">Developer</span></a>
-                        <a class="button button-delete" th:href="@{|/roles/${roleItem.id}/delete|}">
+                        <a class="button button-roledelete" th:href="@{|/roles/${roleItem.id}/delete|}">
                             <i class="material-icons md-18">delete</i>
                         </a>
                     </li>

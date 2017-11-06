@@ -112,12 +112,20 @@ nav ul li.selected a {
 	top: 8px;
 	left: 8px;
 }
-.button.button-delete {
+.button.button-roledelete {
     top:50%;
     margin-top:-9px;
     padding: 5px;
     float: right;
 }
+
+.button.button-delete {
+    top:50%;
+    margin-top:-25px;
+    padding: 5px;
+    float: right;
+}
+
 .button.button-add {
     padding: 5px;
 }

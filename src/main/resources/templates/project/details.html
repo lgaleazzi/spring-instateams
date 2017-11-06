@@ -15,6 +15,9 @@
                 <h3>Starting on: <span th:text="*{#temporals.format(startDate, 'dd MMM yyyy')}"></span></h3>
                 <p th:text="*{description}">Design and build a custom website</p>
                 <span class="tag" th:text="*{status.name}" th:classappend="*{status.state}">Active</span>
+                <a class="button button-delete" th:href="@{|/projects/${project.id}/delete|}">
+                    <i class="material-icons md-18">delete</i>
+                </a>
             </div>
             <div class="roles-collaborators">
                 <h3>Roles &amp; Collaborators</h3>

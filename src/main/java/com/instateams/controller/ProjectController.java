@@ -138,4 +138,16 @@ public class ProjectController
 
         return "project/collaborators";
     }
+
+    @RequestMapping("/projects/{id}/delete")
+    public String deleteProject(@PathVariable Long id, RedirectAttributes redirectAttributes)
+    {
+        Project project = projectService.findById(id);
+        projectService.delete(project);
+
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Project successfully deleted",
+                FlashMessage.Status.SUCCESS));
+
+        return "redirect:/";
+    }
 }
