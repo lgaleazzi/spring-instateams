@@ -78,6 +78,9 @@ public class ProjectController
         {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.project", result);
             redirectAttributes.addFlashAttribute("project", project);
+            redirectAttributes.addFlashAttribute("flash", new FlashMessage("Invalid data",
+                    FlashMessage.Status.FAILURE));
+
             return "redirect:/projects/add";
         }
 
@@ -96,6 +99,9 @@ public class ProjectController
         {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.project", result);
             redirectAttributes.addFlashAttribute("project", project);
+            redirectAttributes.addFlashAttribute("flash", new FlashMessage("Invalid data",
+                    FlashMessage.Status.FAILURE));
+
             return String.format("redirect:/projects/%s/edit", project.getId());
         }
 
@@ -142,6 +148,9 @@ public class ProjectController
     @RequestMapping("/projects/{id}/delete")
     public String deleteProject(@PathVariable Long id, RedirectAttributes redirectAttributes)
     {
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Deletion failed",
+                FlashMessage.Status.FAILURE));
+
         Project project = projectService.findById(id);
         projectService.delete(project);
 

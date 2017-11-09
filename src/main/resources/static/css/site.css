@@ -309,14 +309,14 @@ strong {
 .success {
     color: #009B00;
     border-color: #009B00;
-    background-color: #96FF9E;
+    background-color: #ccffd0;
 }
 
 
 .failure {
     color: #ac4343;
     border-color: #ac4343;
-    background-color: #E39696;
+    background-color: #f4d7d7;
 }
 
 /* ==========================================================================

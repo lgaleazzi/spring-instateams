@@ -55,6 +55,9 @@ public class CollaboratorController
         {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.collaborator", result);
             redirectAttributes.addFlashAttribute("collaborator", collaborator);
+            redirectAttributes.addFlashAttribute("flash", new FlashMessage("Invalid data",
+                    FlashMessage.Status.FAILURE));
+
             return "redirect:/collaborators";
         }
 
@@ -87,6 +90,9 @@ public class CollaboratorController
         {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.collaborator", result);
             redirectAttributes.addFlashAttribute("collaborator", collaborator);
+            redirectAttributes.addFlashAttribute("flash", new FlashMessage("Invalid data",
+                    FlashMessage.Status.FAILURE));
+
             return String.format("redirect:/collaborators/%s", collaborator.getId());
         }
 
@@ -102,6 +108,9 @@ public class CollaboratorController
     @RequestMapping("collaborators/{id}/delete")
     public String deleteCollaborator(@PathVariable Long id, RedirectAttributes redirectAttributes)
     {
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Deletion failed",
+                FlashMessage.Status.FAILURE));
+
         Collaborator collaborator = collaboratorService.findById(id);
         collaboratorService.delete(collaborator);
 

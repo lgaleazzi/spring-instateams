@@ -42,6 +42,9 @@ public class RoleController
         {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.role", result);
             redirectAttributes.addFlashAttribute("role", role);
+            redirectAttributes.addFlashAttribute("flash", new FlashMessage("Invalid data",
+                    FlashMessage.Status.FAILURE));
+
             return "redirect:/roles";
         }
 
@@ -70,6 +73,9 @@ public class RoleController
         {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.role", result);
             redirectAttributes.addFlashAttribute("role", role);
+            redirectAttributes.addFlashAttribute("flash", new FlashMessage("Invalid data",
+                    FlashMessage.Status.FAILURE));
+
             return String.format("redirect:/roles/%s", role.getId());
         }
 
@@ -84,10 +90,15 @@ public class RoleController
     @RequestMapping(value = "/roles/{id}/delete")
     public String deleteRole(@PathVariable Long id, RedirectAttributes redirectAttributes)
     {
+        redirectAttributes.addFlashAttribute("flash", new FlashMessage("Deletion failed",
+                FlashMessage.Status.FAILURE));
+
         Role role = roleService.findById(id);
         roleService.delete(role);
+
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Role deleted.", FlashMessage.Status
                 .SUCCESS));
+
         return "redirect:/roles";
     }
 }
