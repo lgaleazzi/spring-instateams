@@ -1,7 +1,7 @@
 package com.instateams.service;
 
 import com.instateams.dao.CollaboratorDao;
-import com.instateams.exceptions.ObjectNotFoundException;
+import com.instateams.exception.ObjectNotFoundException;
 import com.instateams.model.Collaborator;
 import com.instateams.model.Project;
 import com.instateams.model.Role;

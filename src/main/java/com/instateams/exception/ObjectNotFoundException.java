@@ -1,4 +1,4 @@
-package com.instateams.exceptions;
+package com.instateams.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
