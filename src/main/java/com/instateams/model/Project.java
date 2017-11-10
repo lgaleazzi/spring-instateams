@@ -28,15 +28,13 @@ public class Project implements Comparable<Project>
     private Status status;
 
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd") //This is the pattern of the date send by the HTML form
+    @DateTimeFormat(pattern = "yyyy-MM-dd") //This is the pattern of the date sent by the HTML form
     private LocalDate startDate;
 
     @ManyToMany
-    @JoinTable(joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
     @ManyToMany
-    @Column
     private List<Collaborator> collaborators;
 
     public Project()

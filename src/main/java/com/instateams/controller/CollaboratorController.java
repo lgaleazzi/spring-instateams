@@ -101,7 +101,6 @@ public class CollaboratorController
         redirectAttributes.addFlashAttribute("flash", new FlashMessage("Collaborator updated",
                 FlashMessage.Status.SUCCESS));
 
-
         return "redirect:/collaborators";
     }
 
