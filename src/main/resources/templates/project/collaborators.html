@@ -16,13 +16,14 @@
             <input type="hidden" th:field="*{name}"/>
             <input type="hidden" th:field="*{status}"/>
             <label>Edit Collaborators: <span th:text="*{name}"></span></label>
-            <div th:if="*{roles.isEmpty()}">There are no roles assigned to this project. Please edit the project to add
-                the needed roles.
+            <div th:if="*{rolesNeeded.isEmpty()}">There are no rolesNeeded assigned to this project. Please edit the
+                project to add
+                the needed rolesNeeded.
             </div>
             <ul class="checkbox-list">
-                <li th:each="role : *{roles}">
+                <li th:each="role : *{rolesNeeded}">
                     <span class="primary" th:text="${role.name}">Developer</span>
-                    <input type="hidden" th:field="*{roles[__${roleStat.index}__].id}" th:value="${role.id}"/>
+                    <input type="hidden" th:field="*{rolesNeeded[__${roleStat.index}__].id}" th:value="${role.id}"/>
                     <div class="custom-select">
                         <span class="dropdown-arrow"></span>
                         <select th:field="*{collaborators}">

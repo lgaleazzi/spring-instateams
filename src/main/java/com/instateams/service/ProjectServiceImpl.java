@@ -73,7 +73,7 @@ public class ProjectServiceImpl implements ProjectService
         }
 
         //remove the role
-        project.getRoles().remove(role);
+        project.getRolesNeeded().remove(role);
 
         projectDao.save(project);
     }

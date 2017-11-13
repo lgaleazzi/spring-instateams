@@ -32,7 +32,7 @@ public class Project implements Comparable<Project>
     private LocalDate startDate;
 
     @ManyToMany
-    private List<Role> roles;
+    private List<Role> rolesNeeded;
 
     @ManyToMany
     private List<Collaborator> collaborators;
@@ -48,7 +48,7 @@ public class Project implements Comparable<Project>
         this.description = description;
         this.status = status;
         this.startDate = startDate;
-        this.roles = new ArrayList<>();
+        this.rolesNeeded = new ArrayList<>();
         this.collaborators = new ArrayList<>();
     }
 
@@ -102,14 +102,14 @@ public class Project implements Comparable<Project>
         this.status = status;
     }
 
-    public List<Role> getRoles()
+    public List<Role> getRolesNeeded()
     {
-        return roles;
+        return rolesNeeded;
     }
 
-    public void setRoles(List<Role> roles)
+    public void setRolesNeeded(List<Role> rolesNeeded)
     {
-        this.roles = roles;
+        this.rolesNeeded = rolesNeeded;
     }
 
     public List<Collaborator> getCollaborators()
@@ -124,7 +124,7 @@ public class Project implements Comparable<Project>
 
     public List<Role> getEmptyRoles()
     {
-        List<Role> emptyRoles = new ArrayList<>(roles);
+        List<Role> emptyRoles = new ArrayList<>(rolesNeeded);
         collaborators.forEach(collaborator -> emptyRoles.remove(collaborator.getRole()));
 
         return emptyRoles;
@@ -162,7 +162,7 @@ public class Project implements Comparable<Project>
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", status=" + status +
-                ", roles=" + roles +
+                ", rolesNeeded=" + rolesNeeded +
                 '}';
     }
 

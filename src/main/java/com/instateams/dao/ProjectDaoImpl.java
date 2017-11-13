@@ -41,7 +41,8 @@ public class ProjectDaoImpl extends GenericDao<Project> implements ProjectDao
         Session session = getSessionFactory().openSession();
 
         TypedQuery<Project> query = session
-                .createQuery("select distinct project from Project project join project.roles role where role = :role",
+                .createQuery("select distinct project from Project project join project.rolesNeeded role where role =" +
+                                " :role",
                         Project.class)
                 .setParameter("role", role);
 
@@ -60,9 +61,9 @@ public class ProjectDaoImpl extends GenericDao<Project> implements ProjectDao
 
         if (project != null)
         {
-            Hibernate.initialize(project.getRoles());
+            Hibernate.initialize(project.getRolesNeeded());
             Hibernate.initialize(project.getCollaborators());
-            project.getRoles().forEach(role -> Hibernate.initialize(role.getCollaborators()));
+            project.getRolesNeeded().forEach(role -> Hibernate.initialize(role.getCollaborators()));
         }
 
         session.close();

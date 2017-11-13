@@ -21,7 +21,8 @@
             </div>
             <div class="roles-collaborators">
                 <h3>Roles &amp; Collaborators</h3>
-                <div class="list-item" th:if="*{roles.isEmpty()}">There are no roles and collaborators assigned to this
+                <div class="list-item" th:if="*{rolesNeeded.isEmpty()}">There are no roles and collaborators assigned to
+                    this
                     project
                 </div>
                 <div class="list-item" th:each="role : *{emptyRoles}">

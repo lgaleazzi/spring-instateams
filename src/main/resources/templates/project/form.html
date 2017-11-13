@@ -50,12 +50,12 @@
                 <label>Project Roles:</label>
                 <ul class="checkbox-list">
                     <li th:each="role : ${allRoles}">
-                        <input type="checkbox" th:field="*{roles}" th:value="${role.id}"
-                               th:classappend="${#fields.hasErrors('roles')} ? 'error' : '' "/>
+                        <input type="checkbox" th:field="*{rolesNeeded}" th:value="${role.id}"
+                               th:classappend="${#fields.hasErrors('rolesNeeded')} ? 'error' : '' "/>
                         <span th:text="${role.name}"></span>
                     </li>
                 </ul>
-                <div class="error-message" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
+                <div class="error-message" th:if="${#fields.hasErrors('rolesNeeded')}" th:errors="*{rolesNeeded}"></div>
             </div>
             <div class="actions">
                 <button type="submit" value="Save" class="button">Save</button>

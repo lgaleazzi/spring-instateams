@@ -51,6 +51,7 @@ public class ProjectController
         return collaboratorService.findAll();
     }
 
+
     @RequestMapping("/")
     public String allProjects(Model model)
     {
