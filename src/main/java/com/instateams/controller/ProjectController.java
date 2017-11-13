@@ -51,6 +51,12 @@ public class ProjectController
         return collaboratorService.findAll();
     }
 
+    @ModelAttribute("focus")
+    public String focus()
+    {
+        return "projects";
+    }
+
 
     @RequestMapping("/")
     public String allProjects(Model model)

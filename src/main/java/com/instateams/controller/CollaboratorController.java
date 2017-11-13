@@ -33,6 +33,12 @@ public class CollaboratorController
         return roleService.findAll();
     }
 
+    @ModelAttribute("focus")
+    public String focus()
+    {
+        return "collaborators";
+    }
+
     @RequestMapping("/collaborators")
     public String allCollaborators(Model model)
     {
